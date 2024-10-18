@@ -170,7 +170,7 @@ form textarea {
 }
 
 form input[type="file"] {
-    padding: 0;
+    padding: 5px;
 }
 
 form textarea {
@@ -201,14 +201,43 @@ form button[type="submit"]:hover {
     margin-bottom: 20px;
 }
 
-#mediaPreview img,
-#mediaPreview video {
+/* Media Item Container */
+.media-item {
+    position: relative;
+    display: inline-block;
+}
+
+.media-item img,
+.media-item video {
     width: 100px;
     height: 100px;
     object-fit: cover;
     border: 2px solid var(--primary-color);
     border-radius: 4px;
     cursor: pointer;
+}
+
+/* Remove Media Button */
+.remove-media-btn {
+    position: absolute;
+    top: -5px;
+    right: 5px;
+    background-color: var(--dark-color);
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    font-size: 16px;
+    line-height: 18px;
+    text-align: center;
+    padding: 0;
+    opacity: 0.8;
+}
+
+.remove-media-btn:hover {
+    opacity: 1;
 }
 
 /* Back Button Styles */
@@ -414,6 +443,12 @@ footer p {
     #mediaPreview video,
     .modal-content .media-container img,
     .modal-content .media-container video {
+        width: 80px;
+        height: 80px;
+    }
+
+    .media-item img,
+    .media-item video {
         width: 80px;
         height: 80px;
     }

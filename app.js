@@ -125,9 +125,12 @@ document.querySelectorAll('.backBtn').forEach(btn => {
 function handleServiceMediaUpload(event) {
     const files = event.target.files;
     if (files.length > 0) {
-        selectedMediaFiles = [];
         for (let i = 0; i < files.length; i++) {
-            selectedMediaFiles.push(files[i]);
+            const file = files[i];
+            // Check if the file is already in the array
+            if (!selectedMediaFiles.some(f => f.name === file.name && f.size === file.size)) {
+                selectedMediaFiles.push(file);
+            }
         }
         updateMediaPreview();
     }
@@ -139,18 +142,35 @@ function updateMediaPreview() {
     const mediaPreview = document.getElementById('mediaPreview');
     mediaPreview.innerHTML = '';
     if (selectedMediaFiles.length > 0) {
-        selectedMediaFiles.forEach(file => {
+        selectedMediaFiles.forEach((file, index) => {
+            const mediaContainer = document.createElement('div');
+            mediaContainer.className = 'media-item';
+
             const mediaElement = document.createElement(file.type.startsWith('image/') ? 'img' : 'video');
             mediaElement.src = URL.createObjectURL(file);
             if (file.type.startsWith('video/')) {
                 mediaElement.controls = true;
             }
             mediaElement.onclick = () => expandMedia(mediaElement.src, file.type);
-            mediaPreview.appendChild(mediaElement);
+
+            const removeButton = document.createElement('button');
+            removeButton.className = 'remove-media-btn';
+            removeButton.innerHTML = '&times;';
+            removeButton.onclick = () => removeMediaFile(index);
+
+            mediaContainer.appendChild(mediaElement);
+            mediaContainer.appendChild(removeButton);
+            mediaPreview.appendChild(mediaContainer);
         });
     } else {
         mediaPreview.innerHTML = 'No media selected';
     }
+}
+
+// Remove Media File
+function removeMediaFile(index) {
+    selectedMediaFiles.splice(index, 1);
+    updateMediaPreview();
 }
 
 // Expand Media

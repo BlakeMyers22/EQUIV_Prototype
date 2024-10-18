@@ -31,7 +31,7 @@ async function connectWallet() {
 }
 
 function connectMobileWallet() {
-    const dappUrl = 'BlakeMyers22.github.io/EQIV'; // Replace with your GitHub Pages URL without 'https://'
+    const dappUrl = 'BlakeMyers22.github.io/EQUIV_Prototype'; // Replace with your GitHub Pages URL without 'https://'
     const metamaskAppDeepLink = `https://metamask.app.link/dapp/${dappUrl}`;
     window.location.href = metamaskAppDeepLink;
 }

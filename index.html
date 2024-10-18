@@ -1,0 +1,128 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Tags for Responsive Design and Character Encoding -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equivalence (EQIV) - Service Marketplace DApp</title>
+    <!-- Include Web3.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+    <!-- Link to the CSS File -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Logo and Header Section -->
+    <header>
+        <div class="logo-container">
+            <!-- You can replace this SVG with your own logo -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200">
+                <!-- Gradient Definition -->
+                <defs>
+                    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#ff7e5f;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#feb47b;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <!-- Logo Shape -->
+                <circle cx="100" cy="100" r="80" fill="url(#logoGradient)" />
+                <!-- Logo Text -->
+                <text x="200" y="115" font-family="Verdana, sans-serif" font-size="60" font-weight="bold" fill="#333">EQIV</text>
+                <text x="200" y="150" font-family="Verdana, sans-serif" font-size="24" fill="#555">Equivalence</text>
+            </svg>
+        </div>
+        <h1>Equivalence (EQIV)</h1>
+        <h2>Your Decentralized Service Marketplace</h2>
+    </header>
+
+    <!-- Main Navigation and Wallet Connection -->
+    <nav>
+        <button id="connectWallet">Connect Wallet</button>
+        <div id="walletInfo"></div>
+    </nav>
+
+    <!-- Main Content Sections -->
+    <main>
+        <!-- Home Page -->
+        <section id="homePage" class="page active">
+            <div class="intro">
+                <p>Welcome to Equivalence (EQIV), where service seekers and providers connect seamlessly.</p>
+            </div>
+            <div class="options">
+                <button id="createRequestBtn" disabled>Create Service Request</button>
+                <button id="viewRequestsBtn" disabled>View Service Requests</button>
+            </div>
+        </section>
+
+        <!-- Create Service Request Page -->
+        <section id="createRequestPage" class="page">
+            <h2>Create a Service Request</h2>
+            <form id="requestForm">
+                <label for="serviceCategory">Service Category:</label>
+                <select id="serviceCategory" required>
+                    <option value="">Select a Category</option>
+                    <option value="automotive">Automotive</option>
+                    <option value="home-improvement">Home Improvement</option>
+                    <option value="digital-services">Digital Services</option>
+                    <option value="personal-training">Personal Training</option>
+                    <!-- Add more categories as needed -->
+                </select>
+
+                <label for="serviceTitle">Title:</label>
+                <input type="text" id="serviceTitle" placeholder="e.g., Fix my broken side-view mirror" required>
+
+                <label for="serviceDescription">Description:</label>
+                <textarea id="serviceDescription" rows="5" placeholder="Provide detailed information about your request" required></textarea>
+
+                <label for="serviceBudget">Budget (USDC):</label>
+                <input type="number" id="serviceBudget" placeholder="Enter your budget in USDC" required>
+
+                <label for="serviceLocation">Location:</label>
+                <input type="text" id="serviceLocation" placeholder="City, State or Online" required>
+
+                <label for="serviceMedia">Upload Images or Videos:</label>
+                <input type="file" id="serviceMedia" accept="image/*,video/*" multiple>
+
+                <div id="mediaPreview"></div>
+
+                <button type="submit" id="submitRequest">Submit Request</button>
+            </form>
+            <button class="backBtn">Back to Home</button>
+        </section>
+
+        <!-- View Service Requests Page -->
+        <section id="viewRequestsPage" class="page">
+            <h2>Available Service Requests</h2>
+            <div id="filterSection">
+                <label for="filterCategory">Filter by Category:</label>
+                <select id="filterCategory">
+                    <option value="all">All Categories</option>
+                    <option value="automotive">Automotive</option>
+                    <option value="home-improvement">Home Improvement</option>
+                    <option value="digital-services">Digital Services</option>
+                    <option value="personal-training">Personal Training</option>
+                    <!-- Add more categories as needed -->
+                </select>
+            </div>
+            <div id="requestContainer"></div>
+            <button class="backBtn">Back to Home</button>
+        </section>
+
+        <!-- Request Details Modal -->
+        <div id="requestModal" class="modal">
+            <div class="modal-content">
+                <span class="closeBtn">&times;</span>
+                <div id="modalBody"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2023 Equivalence (EQIV). All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript File -->
+    <script src="app.js"></script>
+</body>
+</html>
